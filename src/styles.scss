@@ -1,0 +1,401 @@
+
+// ---- Police et défitions des classes ----
+// ########################################################
+
+@font-face {
+  font-family: 'Mulish Variable';
+  src: url('https://fonts.google.com/specimen/Mulish');
+}
+
+@font-face {
+  font-family: 'Poto-Bold';
+  src: url('assets/fonts/MAP_police.ttf');
+}
+
+.ff-mulish {
+  font-family: 'Mulish' !important;
+}
+
+.ff-poto {
+  font-family: 'Poto-Bold' !important;
+}
+
+
+
+// ---- Width ----
+// ################################################
+
+@mixin width {
+
+    @for $i from 1 through 2000 {
+      .width-#{$i} {
+        width: #{$i}px;
+      }
+  }
+}
+@include width;
+
+@mixin width-xl {
+  @media only screen and (min-width: 1200px) {
+
+    @for $i from 1 through 2000 {
+      .width-xl-#{$i} {
+        width: #{$i}px !important;
+      }
+    }
+  }
+}
+@include width-xl;
+
+.width-0 {
+  width: 0!important;
+}
+
+.width-xl-0 {
+  @media only screen and (min-width: 1200px) {
+    width: 0!important;
+  }
+}
+
+.w-xl-auto {
+  @media only screen and (min-width: 1200px) {
+    width: auto !important;
+  }
+}
+
+
+
+//  ---- Height ----
+// ################################################
+
+@mixin height {
+
+  @for $i from 1 through 1000 {
+    .height-#{$i} {
+      height: #{$i}px;
+    }
+  }
+}
+@include height;
+
+@mixin height-xl {
+  @media only screen and (min-width: 1200px) {
+
+    @for $i from 1 through 1000 {
+      .height-xl-#{$i} {
+        height: #{$i}px !important;
+      }
+    }
+  }
+}
+@include height-xl;
+
+.height-0 {
+  height: 0!important;
+}
+
+.h-xl-0 {
+  @media only screen and (min-width: 1200px) {
+    height: 0!important;
+  }
+}
+
+.h-xl-auto {
+  @media only screen and (min-width: 1200px) {
+    height: auto !important;
+  }
+}
+
+.height-1500 {
+  height: 1500px!important;
+}
+
+
+.height-2000 {
+  height: 2000px!important;
+}
+
+/**
+
+ ---- Line-height ----
+
+ **/
+
+@mixin line-height {
+
+  @for $i from 1 through 100 {
+    .lh-#{$i} {
+      line-height: #{$i}px;
+    }
+  }
+}
+@include line-height;
+
+/**
+
+ ---- Border ----
+
+**/
+
+@mixin border-radius {
+  @for $i from 1 through 100 {
+    .br-#{$i} { border-radius: #{$i}px; }
+  }
+}
+@include border-radius;
+
+.no-border {
+  border: none !important;
+}
+
+.bs-1 {
+  border: 1px solid;
+}
+.bs-2 {
+  border: 2px solid;
+}
+.bbs-1 {
+  border-bottom: 1px solid;
+}
+
+/**
+
+---- Z-index, opacity ----
+
+**/
+
+@mixin z-index {
+  @for $i from 1 through 999 {
+    .z-#{$i} { z-index: $i; }
+  }
+}
+@include z-index;
+
+.opacity-01 {opacity: 0.1}
+.opacity-02 {opacity: 0.2}
+.opacity-03 {opacity: 0.3}
+.opacity-04 {opacity: 0.4}
+.opacity-05 {opacity: 0.5}
+.opacity-06 {opacity: 0.6}
+.opacity-07 {opacity: 0.7}
+.opacity-08 {opacity: 0.8}
+.opacity-09 {opacity: 0.9}
+
+.no-opacity {
+  opacity: 1;
+}
+
+/**
+
+---- Font-size ----
+
+**/
+
+@mixin font-size-xl {
+  @media only screen and (min-width: 1200px) {
+
+    @for $i from 1 through 100 {
+      .fs-xl-#{$i} {
+        font-size: #{$i}px !important;
+      }
+    }
+  }
+}
+@include font-size-xl;
+
+@mixin font-size {
+    @for $i from 1 through 100 {
+      .fs-#{$i} {
+        font-size: #{$i}px;
+      }
+    }
+}
+@include font-size;
+
+/**
+
+---- cursor ----
+
+**/
+
+.cursor-pointer {
+  cursor: pointer!important;
+}
+
+.cursor-default {
+  cursor: default!important;
+}
+
+.cursor-auto {
+  cursor: auto;
+}
+
+/**
+
+---- hover ----
+
+**/
+
+.opacity-hover {
+  &:hover {
+    opacity: 0.7;
+    outline: 0!important;
+  }
+}
+
+
+.bold-hover {
+  &:hover {
+    font-weight: bold;
+  }
+}
+
+/**
+
+---- Animations, transitions ----
+
+**/
+
+.animation-fade-01 {
+  animation: fadeIn 1s;
+}
+
+.animation-fade-02 {
+  animation: fadeIn 2s;
+}
+
+.animation-slideIn-left {
+  animation-duration: 0.2s;
+  animation-name: slideinLeft;
+}
+
+.animation-slideIn-right {
+  animation-duration: 0.2s;
+  animation-name: slideinRight;
+}
+
+.transition-linear-01 {
+  transition: all 0.1s ease-in-out;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0;}
+  10% { opacity: 0;}
+  100% { opacity: 1; }
+}
+
+@keyframes slideinLeft {
+  from {
+    margin-left: 100%;
+  }
+
+  to {
+    margin-left: 0;
+  }
+}
+
+@keyframes slideinRight {
+
+  0% { opacity: 0;}
+
+  20% { opacity: 1;}
+
+  from {
+    margin-left: -100%;
+  }
+
+  to {
+    margin-left: 0;
+  }
+}
+
+
+/**
+
+---- Hidden, etc. ----
+
+**/
+
+.letter-spacing-003 {
+  letter-spacing: 0.03em;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
+}
+
+.hidden {
+  display: none!important;
+}
+
+.text-overflow-ellipsis {
+  text-overflow: ellipsis;
+}
+
+.text-capitalise-first {
+  text-transform: capitalize!important;
+}
+
+
+input {
+  outline: none;
+}
+
+
+// Définition des variables SCSS pour les color / backgroundColor
+// ################################################################
+$basic-00: #FFFFFE;
+$basic-01: #FAFAF0;
+$basic-02: #E0E0DB;
+$basic-03: #E1E1DC;
+$basic-04: #CCCCCC;
+$basic-05: #999999;
+$primary-00: #333333;
+$primary-01: #282727;
+$primary-02: #0D0D0D;
+$accent-00: #FFF07D;
+$accent-00-deg: #FFF9D0;
+$accent-01: #FB685F;
+$accent-02: #82E682;
+
+.color-basic-00 { color: $basic-00; }
+.color-basic-01 { color: $basic-01; }
+.color-basic-02 { color: $basic-02; }
+.color-basic-03 { color: $basic-03; }
+.color-basic-04 { color: $basic-04; }
+.color-basic-05 { color: $basic-05; }
+.color-primary-00 { color: $primary-00; }
+.color-primary-01 { color: $primary-01; }
+.color-primary-02 { color: $primary-02; }
+.color-accent-00 { color: $accent-00; }
+.color-accent-01 { color: $accent-01; }
+.color-accent-02 { color: $accent-02; }
+
+.bg-color-basic-00 { background-color: $basic-00; }
+.bg-color-basic-01 { background-color: $basic-01; }
+.bg-color-basic-02 { background-color: $basic-02; }
+.bg-color-basic-03 { background-color: $basic-03; }
+.bg-color-basic-04 { background-color: $basic-04; }
+.bg-color-basic-05 { background-color: $basic-05; }
+.bg-color-primary-00 { background-color: $primary-00; }
+.bg-color-primary-01 { background-color: $primary-01; }
+.bg-color-primary-02 { background-color: $primary-02; }
+.bg-color-accent-00 { background-color: $accent-00; }
+.bg-color-accent-01 { background-color: $accent-01; }
+.bg-color-accent-02 { background-color: $accent-02; }
+
+.b-color-basic-00 { border-color: $basic-00; }
+.b-color-basic-01 { border-color: $basic-01; }
+.b-color-basic-02 { border-color: $basic-02; }
+.b-color-basic-03 { border-color: $basic-03; }
+.b-color-basic-04 { border-color: $basic-04; }
+.b-color-basic-05 { border-color: $basic-05; }
+.b-color-primary-00 { border-color: $primary-00; }
+.b-color-primary-01 { border-color: $primary-01; }
+.b-color-primary-02 { border-color: $primary-02; }
+.b-color-accent-00 { border-color: $accent-00; }
+.b-color-accent-01 { border-color: $accent-01; }
+.b-color-accent-02 { border-color: $accent-02; }
+
+

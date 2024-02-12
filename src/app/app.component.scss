@@ -1,0 +1,42 @@
+#navbar{
+  background-color: #282727 !important;
+	font-family: 'Police_MAP';
+  margin-bottom: 1vw;
+  padding-left:1vw;
+}
+
+body{
+  background-color: #282727;
+  min-height: 100vh;
+  font-family: 'Police_MAP';
+  min-height: 100vh;
+}
+
+html{
+  background-color: #282727;
+  min-height: 100vh;
+  font-family: 'Police_MAP';
+}
+
+
+.custom-file-label {
+  display: block;
+  cursor: pointer;
+}
+
+.custom-file-text {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.buttonsInfos{
+  bottom:10px;
+  right:10px;
+}
+
+.footer{
+  bottom:10px;
+}

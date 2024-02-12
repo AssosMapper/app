@@ -1,0 +1,12 @@
+<div class="text-white" *ngIf="authService.currentUser$ | async as user">
+  <div class="text-white" *ngIf="user; else noUser">
+    Utilisateur connecté: {{ user | json }}
+  </div>
+</div>
+
+<app-popin class="text-white"></app-popin>
+
+<ng-template class="text-white" #noUser>Aucun utilisateur connecté.</ng-template>
+
+
+<app-contact></app-contact>

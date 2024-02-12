@@ -1,0 +1,5 @@
+<div *ngIf="(message$ | async) as message" class="popin-container" [class.hide]="!message">
+  <div class="popin-content">
+    <p>{{ message }}</p>
+  </div>
+</div>

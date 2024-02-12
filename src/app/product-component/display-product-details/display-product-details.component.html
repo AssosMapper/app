@@ -1,0 +1,14 @@
+<div *ngIf="product" class="product-details text-white">
+  <h2>{{ product.nom }}</h2>
+  <p>{{ product.description }}</p>
+  <p>{{ product.prix_ht }}</p>
+  <p>{{ product.prix_ttc }}</p>
+
+
+  <div *ngIf="isAdmin">
+    <p>{{ product.quantite }}</p>
+    <p>{{ product.actif }}</p>
+    <button (click)="addToCart(product.id, 1)">Ajouter au panier</button>
+    <button (click)="goToModifyProduct(product)">Modifier</button>
+  </div>
+</div>

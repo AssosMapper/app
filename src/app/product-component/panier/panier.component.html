@@ -1,0 +1,22 @@
+<div class="text-white">
+  <h2>Votre panier</h2>
+  <div *ngFor="let item of cartItems">
+    <p>{{ item.id }}: {{ item.quantity }} </p>
+  </div>
+</div>
+
+<div id="card-element"></div>
+
+<div class="text-white">
+  <h2>Votre panier</h2>
+  <div *ngFor="let item of cartItemsDetailed">
+    <p>Nom: {{ item.name }}</p>
+    <p>ID: {{ item.id }} - Quantité: {{ item.quantity }}</p>
+    <p>Prix HT: {{ item.prix_ht | currency:'EUR' }}</p>
+    <p>Prix TTC: {{ (item.prix_ttc * 1.2) | currency:'EUR' }}</p>
+    <button (click)="addToCart(item.id, 1)">Augmenter la quantité</button>
+    <button (click)="decreaseQuantity(item.id)">Réduire la quantité</button>
+    <button (click)="removeProductCompletely(item.id)">Supprimer</button>  </div>
+  <p>Total : {{ total | currency:'EUR' }}</p>
+  <button (click)="pay()">Payer</button>
+</div>

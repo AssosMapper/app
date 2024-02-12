@@ -1,0 +1,40 @@
+<app-popin class="text-white"></app-popin>
+
+<div class="display-product-container text-white">
+  <h2>Produits</h2>
+
+  <!-- Dropdown pour les catégories -->
+  <select [(ngModel)]="selectedCategory" (change)="filterProducts()">
+    <option value="all">Toutes les catégories</option>
+    <option *ngFor="let category of categories" [value]="category.id">{{ category.nom }}</option>
+  </select>
+
+
+  <!-- Barre de recherche -->
+  <input type="text" [(ngModel)]="searchTerm" (input)="filterProducts()" placeholder="Rechercher...">
+
+  <!-- Tri par prix -->
+  <button (click)="sortProducts('asc')">Prix Croissant</button>
+  <button (click)="sortProducts('desc')">Prix Décroissant</button>
+
+  <!-- Liste des produits -->
+  <div class="products">
+    <div *ngFor="let product of filteredProducts" class="product-card">
+      <img [src]="'http://localhost:3000/' + product.image" alt="Image du produit" class="product-image">
+      <div class="product-info">
+        <h3>{{ product.nom }}</h3>
+        <!-- <p>{{ product.description }}</p> -->
+        <div class="price">
+          <span>Prix HT: {{ product.prix_ht | currency:'EUR' }}</span>
+          <span>Prix TTC: {{ product.prix_ttc | currency:'EUR' }}</span>
+        </div>
+      </div>
+      <button (click)="viewProductDetails(product)">Voir les détails</button>
+      <button (click)="addToCart(product.id, 1)">Ajouter au panier</button>
+      <div *ngIf="isAdmin">
+        <button (click)="goToModifyProduct(product)">Modifier</button>
+      </div>
+    </div>
+  </div>
+</div>
+

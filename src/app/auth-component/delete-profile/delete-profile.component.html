@@ -1,0 +1,9 @@
+<div class="delete-profile text-white">
+  <h2>Suppression du mot de passe</h2>
+  <p>Voulez-vous vraiment supprimer votre mot de passe ? Cette action est irréversible.</p>
+
+  <input type="text" [(ngModel)]="confirmationText" placeholder="Entrez 'DeleteMyProfil' ici">
+
+  <button (click)="confirmDelete()">Confirmer la suppression</button>
+  <button>Annuler</button>
+</div>

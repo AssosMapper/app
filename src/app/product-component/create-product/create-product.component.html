@@ -1,0 +1,15 @@
+<form (ngSubmit)="createProduct()">
+  <input type="file" (change)="onFileSelected($event)" name="image">
+  <input type="text" [(ngModel)]="product.nom" name="nom" placeholder="Nom du produit" required>
+  <textarea [(ngModel)]="product.description" name="description" placeholder="Description"></textarea>
+  <input type="number" [(ngModel)]="product.prix_ht" name="prix_ht" placeholder="Prix H.T." required>
+  <input type="number" [(ngModel)]="product.prix_ttc" name="prix_ttc" placeholder="Prix T.T.C." required>
+  <input type="number" [(ngModel)]="product.quantite" name="quantite" placeholder="Quantité" required>
+  <input type="checkbox" [(ngModel)]="product.actif" name="actif">
+  <select [(ngModel)]="product.category_id" name="category_id">
+    <option value="1">Catégorie A</option>
+    <option value="2">Catégorie B</option>
+    <option value="3">Catégorie C</option>
+  </select>
+  <button type="submit">Créer le produit</button>
+</form>
