@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from 'src/app/services/product.service';
 import { StripePaymentService } from 'src/app/services/stripe-payment.service';
-import { AuthService } from 'src/app/services/auth-service';
+import { AuthService } from 'src/app/auth-component/auth-service';
 
 declare var Stripe: any;
 

@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable, catchError, map, of, switchMap, tap } from 'rxjs';
-import { PopinService } from './pop-in.service';
-import { MailService } from './mail.service';
+import { BehaviorSubject, Observable, catchError, map, of, switchMap, tap, throwError } from 'rxjs';
+import { PopinService } from '../services/pop-in.service';
+import { MailService } from '../services/mail.service';
 import { ForgotPasswordResponse } from '../models/forgotPasswordResponse.model';
+import { User } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -38,68 +39,60 @@ export class AuthService {
     this.currentUserSubject.next(user);
   }
 
-  register(formData: FormData): Observable<any> {
-    const url = `${this.baseUrl}/api/register`;
-    return this.http.post<any>(url, formData).pipe(
-      tap(
-        response => {
-          console.log('Résultat de l\'inscription:', response);
-          this.popinService.showPopin('Enregistrement réussi');
-          this.router.navigate(['/']);
+  register(userData: User): Observable<any> {
+    const url = `${this.baseUrl}/register`;
 
-          formData.forEach((value, key) => {
-            if (key === 'user') {
-              const user = JSON.parse(value as string);
-              const emailData = {
-                toEmail: user.email,
-                subject: 'Bienvenue chez Nous',
-                message: 'Votre inscription a été réussie.'
-              };
-              this.mailService.sendEmail(emailData).subscribe(
-                emailResponse => console.log('Email de bienvenue envoyé', emailResponse),
-                emailError => console.error('Erreur lors de l\'envoi de l\'email', emailError)
-              );
-            }
-          });
-
-          this.router.navigate(['/']).then(() => {
-            this.popinService.showPopin('Enregistrement réussi');
-          });
-        },
-        error => console.error('Erreur lors de l\'inscription:', error)
-      )
-    );
-  }
-
-  checkUserExists(email: string): Observable<boolean> {
-    const url = `${this.baseUrl}/api/check-user`;
-    return this.http.post<any>(url, { email }).pipe(
-        map(response => response.exists),
-        catchError(error => {
-            console.error('Erreur lors de la vérification de l\'utilisateur:', error);
-            return of(false);
-        })
+    return this.http.post<any>(url, JSON.stringify(userData), {
+      headers: { 'Content-Type': 'application/json' }
+    }).pipe(
+      tap(response => {
+        console.log('Résultat de l\'inscription:', response);
+        this.popinService.showPopin('Enregistrement réussi');
+        this.router.navigate(['/']);
+      }),
+      catchError(error => {
+        console.error('Erreur lors de l\'inscription:', error);
+        return throwError(() => error);
+      })
     );
   }
 
   login(credentials: any): Observable<any> {
-    const url = `${this.baseUrl}/api/login`;
-    return this.http.post<any>(url, credentials).pipe(
-      tap(
-        response => {
-          this.setCurrentUser(response.user);
-          localStorage.setItem('userLoginToken', response.token);
-          this.router.navigate(['/']).then(() => {
-          this.popinService.showPopin('Connexion réussie');
-          });
-        },
-        error => {
-          console.error('Erreur lors de la connexion', error);
-          this.popinService.showPopin('Mauvais email ou mot de passe. Veillez réessayer.');
-        }
-      )
+    const url = `${this.baseUrl}/login`;
+
+    return this.http.post<any>(url, JSON.stringify(credentials), {
+      headers: { 'Content-Type': 'application/json' }
+    }).pipe(
+      tap(response => {
+        console.log('Résultat de la connexion:', response);
+        this.popinService.showPopin('Enregistrement réussi');
+        this.router.navigate(['/']);
+      }),
+      catchError(error => {
+        console.error('Erreur lors de l\'inscription:', error);
+        return throwError(() => error);
+      })
     );
   }
+
+  // login(credentials: any): Observable<any> {
+  //   const url = `${this.baseUrl}/login`;
+  //   return this.http.post<any>(url, credentials).pipe(
+  //     tap(
+  //       response => {
+  //         this.setCurrentUser(response.user);
+  //         localStorage.setItem('userLoginToken', response.token);
+  //         this.router.navigate(['/']).then(() => {
+  //         this.popinService.showPopin('Connexion réussie');
+  //         });
+  //       },
+  //       error => {
+  //         console.error('Erreur lors de la connexion', error);
+  //         this.popinService.showPopin('Mauvais email ou mot de passe. Veillez réessayer.');
+  //       }
+  //     )
+  //   );
+  // }
 
   logout(): void {
     this.popinService.showPopin('Déconnexion réussie');

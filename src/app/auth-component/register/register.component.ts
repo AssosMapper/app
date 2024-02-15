@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthService } from 'src/app/services/auth-service';
+import { AuthService } from 'src/app/auth-component/auth-service';
 import { User } from 'src/app/models/user.model';
 
 @Component({
@@ -10,17 +10,15 @@ import { User } from 'src/app/models/user.model';
 export class RegisterComponent {
 
   user: User = {
+    email: '',
+    username: '',
     firstName: '',
     lastName: '',
-    address: '',
-    dateOfBirth: null,
-    dateCreated: new Date(),
-    phoneNumber: '',
-    email: '',
-    nationality: '',
     password: '',
-    sexe: '',
+    confirm_password:'',
+    phone: '',
   };
+
 
   selectedFile: File = null;
 
@@ -30,20 +28,6 @@ export class RegisterComponent {
     this.selectedFile = event.target.files[0];
   }
 
-  checkAndRegister() {
-
-    console.log('Données utilisateur soumises:', this.user);
-
-    this.authService.checkUserExists(this.user.email).subscribe(exists => {
-        if (exists) {
-            console.log('Utilisateur existe déjà');
-            // Gérer l'existence de l'utilisateur (afficher un message, etc.)
-        } else {
-            this.register();
-        }
-    });
-}
-
   register() {
     const formData = new FormData();
     formData.append('user', JSON.stringify(this.user));
@@ -51,7 +35,7 @@ export class RegisterComponent {
       formData.append('avatar', this.selectedFile, this.selectedFile.name);
     }
 
-    this.authService.register(formData).subscribe(
+    this.authService.register(this.user).subscribe(
       response => {
         // Gérez la réponse du serveur
       },
@@ -60,4 +44,20 @@ export class RegisterComponent {
       }
     );
   };
+
+//   checkAndRegister() {
+
+//     console.log('Données utilisateur soumises:', this.user);
+
+//     this.authService.checkUserExists(this.user.email).subscribe(exists => {
+//         if (exists) {
+//             console.log('Utilisateur existe déjà');
+//             // Gérer l'existence de l'utilisateur (afficher un message, etc.)
+//         } else {
+//             this.register();
+//         }
+//     });
+// }
+
+
 }

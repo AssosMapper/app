@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/services/auth-service';
+import { AuthService } from 'src/app/auth-component/auth-service';
 import { PopinService } from 'src/app/services/pop-in.service';
 
 @Component({

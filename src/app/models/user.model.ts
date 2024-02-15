@@ -1,14 +1,12 @@
 export interface User {
   id?: number;
-  sexe: string;
+  email: string;
+  username: string;
+  password: string;
+  confirm_password: string;
   firstName: string;
   lastName: string;
-  address: string;
-  dateOfBirth: Date;
-  dateCreated: Date;
-  roleId?: number;
-  phoneNumber: string;
-  email: string;
-  nationality: string;
-  password: string;
+  phone: string;
 }
+
+

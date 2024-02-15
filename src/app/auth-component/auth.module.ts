@@ -47,7 +47,7 @@ export const homeRoutes: Routes = [
     RegisterComponent,
     LoginComponent,
     LogoutComponent,
-    ModifyComponent,
+    // ModifyComponent,
     ForgotPasswordComponent,
     ResetPasswordComponent,
     DeleteProfileComponent,

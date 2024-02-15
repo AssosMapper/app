@@ -1,17 +1,11 @@
-<form (ngSubmit)="checkAndRegister()">
-  <input type="file" (change)="onFileSelected($event)" name="avatar">
-  <select [(ngModel)]="user.sexe" name="sexe" required>
-    <option value="masculin">Masculin</option>
-    <option value="feminin">Féminin</option>
-    <option value="non défini">Non défini</option>
-  </select>
+<form (ngSubmit)="register()">
+  <!-- <input type="file" (change)="onFileSelected($event)" name="avatar"> -->
+  <input type="email" [(ngModel)]="user.email" name="email" placeholder="Email" required>
+  <input type="text" [(ngModel)]="user.username" name="username" placeholder="Username" required>
   <input type="text" [(ngModel)]="user.firstName" name="firstName" placeholder="First Name" required>
   <input type="text" [(ngModel)]="user.lastName" name="lastName" placeholder="Last Name" required>
-  <input type="text" [(ngModel)]="user.address" name="address" placeholder="Address">
-  <input type="date" [(ngModel)]="user.dateOfBirth" name="dateOfBirth" placeholder="Date of Birth" required>
-  <input type="text" [(ngModel)]="user.phoneNumber" name="phoneNumber" placeholder="Phone Number">
-  <input type="email" [(ngModel)]="user.email" name="email" placeholder="Email" required>
-  <input type="text" [(ngModel)]="user.nationality" name="nationality" placeholder="Nationality">
+  <input type="text" [(ngModel)]="user.phone" name="nationality" placeholder="Phone">
   <input type="password" [(ngModel)]="user.password" name="password" placeholder="Password" required>
+  <input type="password" [(ngModel)]="user.confirm_password" name="confirm_password" placeholder="Password" required>
   <button type="submit">Register</button>
 </form>

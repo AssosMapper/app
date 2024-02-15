@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthService } from '../../services/auth-service';
+import { AuthService } from '../auth-service';
 import { PopinService } from 'src/app/services/pop-in.service';
 
 @Component({

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthService } from 'src/app/services/auth-service';
+import { AuthService } from 'src/app/auth-component/auth-service';
 
 @Component({
   selector: 'app-page',
@@ -7,13 +7,13 @@ import { AuthService } from 'src/app/services/auth-service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-  email = '';
+  username = '';
   password = '';
 
   constructor(private authService: AuthService) {}
 
   onLogin() {
-    this.authService.login({ email: this.email, password: this.password }).subscribe(
+    this.authService.login({ username: this.username, password: this.password }).subscribe(
       response => {
         console.log('Connexion réussie', response);
       },

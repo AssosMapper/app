@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthService } from 'src/app/services/auth-service';
+import { AuthService } from 'src/app/auth-component/auth-service';
 import { User } from 'src/app/models/user.model';
 import { DatePipe } from '@angular/common';
 import { format } from 'date-fns';
@@ -43,14 +43,14 @@ export class ModifyComponent {
     );
   }
 
-  onDateSelected() {
-    const selectedDate = new Date(this.user.dateOfBirth);
-    const formattedDate = format(selectedDate, 'yyyy-MM-dd');
+  // onDateSelected() {
+  //   const selectedDate = new Date(this.user.dateOfBirth);
+  //   const formattedDate = format(selectedDate, 'yyyy-MM-dd');
 
-    this.user.dateOfBirth = new Date(formattedDate);
+  //   this.user.dateOfBirth = new Date(formattedDate);
 
-    console.log('Formatted Date:', formattedDate);
-  }
+  //   console.log('Formatted Date:', formattedDate);
+  // }
 
 
 
