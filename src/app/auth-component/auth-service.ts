@@ -65,6 +65,8 @@ export class AuthService {
     }).pipe(
       tap(response => {
         console.log('Résultat de la connexion:', response);
+        localStorage.setItem('userLoginToken', response.access_token);
+        console.log(response.access_token);
         this.popinService.showPopin('Enregistrement réussi');
         this.router.navigate(['/']);
       }),
@@ -74,25 +76,6 @@ export class AuthService {
       })
     );
   }
-
-  // login(credentials: any): Observable<any> {
-  //   const url = `${this.baseUrl}/login`;
-  //   return this.http.post<any>(url, credentials).pipe(
-  //     tap(
-  //       response => {
-  //         this.setCurrentUser(response.user);
-  //         localStorage.setItem('userLoginToken', response.token);
-  //         this.router.navigate(['/']).then(() => {
-  //         this.popinService.showPopin('Connexion réussie');
-  //         });
-  //       },
-  //       error => {
-  //         console.error('Erreur lors de la connexion', error);
-  //         this.popinService.showPopin('Mauvais email ou mot de passe. Veillez réessayer.');
-  //       }
-  //     )
-  //   );
-  // }
 
   logout(): void {
     this.popinService.showPopin('Déconnexion réussie');
