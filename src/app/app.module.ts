@@ -11,6 +11,13 @@ import { HomePageComponent } from './views/home-page/home-page.component';
 import { DatePipe } from '@angular/common';
 import { SharedModule } from './shared-component/shared-module';
 import { AdminModule } from './admin-component/admin.module';
+import { EffectsModule } from '@ngrx/effects';
+import { AuthEffects } from './auth-component/auth.effects';
+import { StoreModule } from '@ngrx/store';
+import { ActionReducerMap } from '@ngrx/store';
+import { metaReducers, reducers } from './reducers';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -28,6 +35,9 @@ import { AdminModule } from './admin-component/admin.module';
     ReactiveFormsModule,
     SharedModule,
     AdminModule,
+    EffectsModule.forRoot([AuthEffects]),
+    StoreModule.forRoot(reducers, { metaReducers }),
+    !environment.production ? StoreDevtoolsModule.instrument({ maxAge: 25 }) : [],
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]
