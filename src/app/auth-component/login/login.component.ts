@@ -13,17 +13,6 @@ export class LoginComponent {
 
   constructor(private store: Store) {}
 
-  // onLogin() {
-  //   this.authService.login({ username: this.username, password: this.password }).subscribe(
-  //     response => {
-  //       console.log('Connexion réussie', response);
-  //     },
-  //     error => {
-  //       console.error('Erreur lors de la connexion', error);
-  //     }
-  //   );
-  // }
-
   onLogin() {
     this.store.dispatch(AuthActions.login({ credentials: { username: this.username, password: this.password } }));
   }
