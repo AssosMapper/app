@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { AuthService } from 'src/app/auth-component/auth-service';
 import { User } from 'src/app/models/user.model';
+import { AppState } from 'src/app/reducers';
+import { register } from '../auth.action';
 
 @Component({
   selector: 'app-register',
@@ -22,11 +25,28 @@ export class RegisterComponent {
 
   selectedFile: File = null;
 
-  constructor(private authService: AuthService) {}
+  constructor(private store: Store<AppState>) {}
 
   onFileSelected(event) {
     this.selectedFile = event.target.files[0];
   }
+
+  // register() {
+  //   const formData = new FormData();
+  //   formData.append('user', JSON.stringify(this.user));
+  //   if (this.selectedFile) {
+  //     formData.append('avatar', this.selectedFile, this.selectedFile.name);
+  //   }
+
+  //   this.authService.register(this.user).subscribe(
+  //     response => {
+  //       // Gérez la réponse du serveur
+  //     },
+  //     error => {
+  //       // Gérez les erreurs
+  //     }
+  //   );
+  // };
 
   register() {
     const formData = new FormData();
@@ -35,29 +55,6 @@ export class RegisterComponent {
       formData.append('avatar', this.selectedFile, this.selectedFile.name);
     }
 
-    this.authService.register(this.user).subscribe(
-      response => {
-        // Gérez la réponse du serveur
-      },
-      error => {
-        // Gérez les erreurs
-      }
-    );
-  };
-
-//   checkAndRegister() {
-
-//     console.log('Données utilisateur soumises:', this.user);
-
-//     this.authService.checkUserExists(this.user.email).subscribe(exists => {
-//         if (exists) {
-//             console.log('Utilisateur existe déjà');
-//             // Gérer l'existence de l'utilisateur (afficher un message, etc.)
-//         } else {
-//             this.register();
-//         }
-//     });
-// }
-
-
+    this.store.dispatch(register({ userData: this.user }));
+  }
 }

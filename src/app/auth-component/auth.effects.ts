@@ -23,10 +23,20 @@ export class AuthEffects {
   )
 );
 
-  // Ajoutez d'autres effets ici, comme la déconnexion
+register$ = createEffect(() =>
+this.actions$.pipe(
+  ofType(AuthActions.register),
+  switchMap(({ userData }) =>
+    this.authService.register(userData).pipe(
+      map(() => AuthActions.registerSuccess({ message: 'Registration successful' })),
+      catchError(error => of(AuthActions.registerFailure({ error: error.message })))
+    )
+  )
+)
+);
 
-  constructor(
-    private actions$: Actions,
-    private authService: AuthService
-  ) {}
+constructor(
+  private actions$: Actions,
+  private authService: AuthService
+) {}
 }

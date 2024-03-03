@@ -6,7 +6,6 @@ export const login = createAction(
   props<{ credentials: { username: string; password: string } }>()
 );
 
-
 export const loginSuccess = createAction(
   '[Auth] Login Success',
   props<{ token: string; user: User }>()
@@ -18,3 +17,18 @@ export const loginFailure = createAction(
 );
 
 export const logout = createAction('[Auth] Logout');
+
+export const register = createAction(
+  '[Auth] Register',
+  props<{ userData: User }>()
+);
+
+export const registerSuccess = createAction(
+  '[Auth] Register Success',
+  props<{ message: string }>()
+);
+
+export const registerFailure = createAction(
+  '[Auth] Register Failure',
+  props<{ error: string }>()
+);

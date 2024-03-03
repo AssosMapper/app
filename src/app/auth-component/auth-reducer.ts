@@ -4,7 +4,9 @@ import { initialAuthState, AuthState } from './auth.state';
 
 export const authReducer = createReducer(
   initialAuthState,
+
   on(AuthActions.login, (state) => ({ ...state, loading: true, error: null })),
+
   on(AuthActions.loginSuccess, (state, { token, user }) => ({
     ...state,
     token,
@@ -12,10 +14,27 @@ export const authReducer = createReducer(
     loading: false,
     error: null
   })),
+
   on(AuthActions.loginFailure, (state, { error }) => ({
     ...state,
     error,
     loading: false
   })),
-  on(AuthActions.logout, (state) => initialAuthState)
+
+  on(AuthActions.logout, (state) => initialAuthState),
+
+  on(AuthActions.register, (state) => ({ ...state, loading: true, error: null })),
+
+  on(AuthActions.registerSuccess, (state, { message }) => ({
+    ...state,
+    loading: false,
+    error: null
+  })),
+
+  on(AuthActions.registerFailure, (state, { error }) => ({
+    ...state,
+    error,
+    loading: false
+  }))
+
 );
